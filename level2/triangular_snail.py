@@ -1,8 +1,8 @@
+#삼각달팽이
+
 def snail(arr, num, dir,i, j): #전체 arr, 넣을 number[1,2,3,4,5], 방향 
     last_j_idx = j
     last_i_idx = i
-    result = []
-
     if(dir=="right"):
         for x in range(0, len(num)):
             arr[i][j+1]=num[x]
@@ -14,6 +14,7 @@ def snail(arr, num, dir,i, j): #전체 arr, 넣을 number[1,2,3,4,5], 방향
             i-=1
             last_i_idx = i
     if(dir=="down"):
+        # 처음시작이면?
         if(i==0 and j==0):
             for x in range(0, len(num)):
                 arr[i][j]=num[x]
@@ -26,10 +27,10 @@ def snail(arr, num, dir,i, j): #전체 arr, 넣을 number[1,2,3,4,5], 방향
                 i+=1
                 last_i_idx = i
                 last_j_idx = j
+    result = []
     result.append(last_i_idx)
     result.append(last_j_idx)
     return result
-
 def solution(n):
     count=n
     number=1
@@ -37,7 +38,6 @@ def solution(n):
     num = []
     dir = []
     answer=[]
-    result=[0,0]
     direction = ["down","right","up"]
 
     #넣을 데이터 
@@ -59,11 +59,12 @@ def solution(n):
             tmp.append(0)
         arr.append(tmp)    
         
+    result=[0,0]
     for i in range(0, n):
         result = snail(arr, num[i],dir[i],result[0],result[1])
 
     for i in arr:
         for j in i:
             if(j!=0):
-                answer.append(j)    
-    return answer  
+                answer.append(j)      
+    return answer
